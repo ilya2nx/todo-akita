@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TodosService } from '../_state/todos.service';
 
 @Component({
   selector: 'app-todos-page',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodosPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private todosService: TodosService) {
+  }
 
   ngOnInit(): void {
+  }
+
+  add(input: HTMLInputElement) {
+    this.todosService.add(input.value);
+    input.value = '';
   }
 
 }
