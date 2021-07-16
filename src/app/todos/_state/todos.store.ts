@@ -1,24 +1,15 @@
 import { Injectable } from '@angular/core';
+import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
 import { Todo } from './todo.model';
-import { StoreConfig, EntityState, EntityStore } from '@datorama/akita';
 
-export interface TodosState extends EntityState<Todo> {
-   key: string;
-}
 
-export function createInitialState(): TodosState {
-  return {
-    key: ''
-  };
-}
-
+export interface TodosState extends EntityState<Todo, number> { }
 @Injectable({ providedIn: 'root' })
-@StoreConfig({ name: 'todo' })
+@StoreConfig({ name: 'todos' })
 export class TodosStore extends EntityStore<TodosState> {
-
   constructor() {
-    super(createInitialState());
+    super() ;
   }
-
 }
+
 
