@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TodosService } from '../_state/todos.service';
+import { initialFilters } from '../filter/filter.model';
 
 @Component({
   selector: 'app-todos-page',
@@ -7,6 +8,8 @@ import { TodosService } from '../_state/todos.service';
   styleUrls: ['./todos-page.component.scss']
 })
 export class TodosPageComponent implements OnInit {
+
+  filters = initialFilters
 
   items = [];
 

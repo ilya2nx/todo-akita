@@ -1,5 +1,3 @@
-import { guid } from '@datorama/akita';
-
 export type Todo = {
   id: string;
   title: string;

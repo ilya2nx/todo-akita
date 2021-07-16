@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { TodoFilter, VisibilityFilter } from './filter.model';
 
 @Component({
   selector: 'app-filter',
@@ -7,16 +7,17 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent implements OnInit {
+  @Input() active!: VisibilityFilter
+  @Input() filters: TodoFilter[] = [];
+  @Output() update = new EventEmitter<VisibilityFilter>();
 
-  control!: FormControl;
-
+  selectedTodo: string = '';
 
   constructor() {
 
   }
 
   ngOnInit(): void {
-
   }
 
 }
