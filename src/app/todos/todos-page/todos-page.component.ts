@@ -14,7 +14,7 @@ export class TodosPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  add(input: any) {
+  add(input: HTMLInputElement) {
     this.todosService.add(input.value);
     input.value = '';
   }
