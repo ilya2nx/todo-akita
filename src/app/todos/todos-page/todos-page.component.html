@@ -6,7 +6,7 @@
         <input id="float-input" type="text" pInputText #input (keydown.enter)="add(input)"> 
         <label for="float-input">Название заметки</label>
       </span>
-      <p-button icon="pi pi-check"></p-button>
+      <p-button icon="pi pi-check" (click)="add(input)"></p-button>
     </div>
     <h3>Список заметок</h3>
     <app-filter></app-filter>
