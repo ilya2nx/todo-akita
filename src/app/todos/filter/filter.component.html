@@ -1,5 +1,8 @@
 <div class="filter__space">
   <p>Показывать</p>
-  <p-dropdown [options]="filters" [(ngModel)]="selectedTodo" optionLabel="name">
-  </p-dropdown>
+  <!-- <p-dropdown [options]="filters" [(ngModel)]="selectedTodo" optionLabel="name"></p-dropdown> -->
+  <select [formControl]="control" class="browser-default">
+    <option *ngFor="let filter of filters;" [ngValue]="filter.value">{{filter.name}}
+    </option>
+  </select>
 </div>

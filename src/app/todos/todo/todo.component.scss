@@ -1,7 +1,36 @@
+.todo__container {
+  display: flex;
+  margin-bottom: 10px;
+}
+
 .todo__body {
   display: flex;
-  width: 300px;
-  justify-content: space-between;
+  width: 319px;
   border: 1px solid #D8DAE0;
-  height: 40px;
+  height: 36px;
+}
+
+.checkbox__inner {
+  width: 36px;
+  background-color: #D8DAE0;
+  display: flex;
+}
+
+.todo__checkbox {
+  margin: auto auto;
+  cursor: pointer;
+}
+
+.title__inner {
+  display: flex;
+  align-items: center;
+}
+
+.todo__title {
+  padding-left: 10px;
+}
+
+.p-button-danger {
+  width: 36px;
+  height: 36px;
 }

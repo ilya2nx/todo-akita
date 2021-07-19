@@ -5,6 +5,7 @@
         <div class="input__space">
           <span class="p-float-label">
             <input 
+            class="todo__input"
               id="float-input" 
               type="text" 
               pInputText 
@@ -17,8 +18,11 @@
         </div>
       </form>
     <h3>Список заметок</h3>
-    <app-filter [filters]="filters"></app-filter>
-    <app-todo></app-todo>
-    {{ items | async | json }}
+    <app-filter [filters]="filters" (update)="changeFilter($event)" [active]="activeFilter$ | async"></app-filter>
+    <app-todos 
+      [todos]="todos$ | async" 
+      (delete)="delete($event)"
+      (complete)="complete($event)"
+    ></app-todos>
   </div>
 </div>

@@ -1,8 +1,12 @@
-<div class="todo__body">
-  <p-checkbox></p-checkbox>
-  {{todos | json}}
-  <div *ngFor="let todo of todos">
-    <p>{{ todo.title }}</p>
+<div class="todo__container">
+  <div class="todo__body">
+    <div class="checkbox__inner">
+      <!-- <p-checkbox class="todo__checkbox" [formControl]="control"></p-checkbox> -->
+      <input type="checkbox" class="todo__checkbox" [formControl]="control">
+    </div>
+    <div class="title__inner">
+      <p class="todo__title">{{todo.title}}</p>
+    </div>
   </div>
-  <button pButton pRipple type="button" icon="pi pi-times" class="p-button-danger"></button>
+  <button pButton pRipple type="button" icon="pi pi-times" class="p-button-danger" (click)="delete.emit(todo.id)"></button>
 </div>

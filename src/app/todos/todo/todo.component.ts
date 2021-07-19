@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Todo } from '../_state/todo.model';
 
@@ -8,15 +8,21 @@ import { Todo } from '../_state/todo.model';
   styleUrls: ['./todo.component.scss']
 })
 export class TodoComponent implements OnInit {
-  control!: FormControl;
-
-@Input() todos: Todo[] = [];
 @Input() todo!: Todo;
+@Output() delete = new EventEmitter<string>();
+@Output() complete = new EventEmitter<Todo>();
+
+control!: FormControl
 
 
   constructor() { }
 
 
   ngOnInit(): void { 
+    this.control = new FormControl(this.todo.completed);
+
+    this.control.valueChanges.subscribe((completed: boolean) => {
+      this.complete.emit({ ...this.todo, completed });
+    })
   }
 }

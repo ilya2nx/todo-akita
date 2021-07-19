@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TodosService } from '../_state/todos.service';
 import { TodosQuery } from '../_state/todos.query';
-import { initialFilters } from '../filter/filter.model';
+import { initialFilters, VisibilityFilter } from '../filter/filter.model';
 import { Todo } from '../_state/todo.model';
 import { Observable } from 'rxjs';
 
@@ -11,9 +11,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./todos-page.component.scss']
 })
 export class TodosPageComponent implements OnInit {
+  @Input() todos!: Todo[];
+  todos$: Observable<Todo[]> = this.todosQuery.selectVisibleTodos$;
+  activeFilter$!: Observable<VisibilityFilter>;
   filters = initialFilters
 
-  items!: Observable<Todo[]>;
 
   newTask = '';
 
@@ -21,19 +23,26 @@ export class TodosPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.items = this.todosQuery.selectAll();
+    this.activeFilter$ = this.todosQuery.selectVisibilityFilter$;
   }
-
-  // add(input: HTMLInputElement) {
-  //   this.todosService.add(input.value);
-  //   input.value = '';
-  // }
 
   add() {
     if(!this.newTask) return;
     
     this.todosService.add(this.newTask)
     this.newTask = '';  
+  }
+
+  delete(id: string) {
+    this.todosService.delete(id)
+  }
+
+  complete(todo: Todo) {
+    this.todosService.complete(todo)
+  }
+
+  changeFilter(filter: VisibilityFilter) {
+    this.todosService.updateFilter(filter)
   }
 
 }

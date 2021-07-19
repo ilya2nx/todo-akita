@@ -1,3 +1,5 @@
+import { guid } from "@datorama/akita";
+
 export type Todo = {
   id: string;
   title: string;
@@ -6,7 +8,7 @@ export type Todo = {
 
 export function createTodo(title: string) {
   return {
-    id: '',
+    id: guid(),
     title,
     completed: false
   } as Todo;
